@@ -4,7 +4,7 @@ import json
 base_url = 'http://localhost:8079'
 
 def run_shell_command(command):
-    response = requests.post(f'{base_url}/tools/shell', data=json.dumps({"command": command}), headers={'Content-Type': 'application/json'})
+    response = requests.post(f'{base_url}/tools/shell', data=json.dumps({"command": command}), headers={'Content-Type': 'application/json'}, timeout=60)
     if response.status_code == 200:
         print("Command executed successfully")
         print("STDOUT: ", response.json()['stdout'])

@@ -53,7 +53,7 @@ async def create_file(item: CreateFileModel):
 @router.post("/tools/ppt/get_image")
 async def get_image(item: GetImageModel):
     picture_url = IMAGE_BED_PATTERN.format(item.keywords)
-    response = requests.get(picture_url)
+    response = requests.get(picture_url, timeout=60)
     img_local_path = os.path.join(CACHE_DIR, f"{time.time()}.jpg")
     with open(img_local_path, 'wb') as f:
         f.write(response.content)

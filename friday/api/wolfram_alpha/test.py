@@ -15,7 +15,7 @@ data = {
 }
 
 # Send the request
-response = requests.post(url, headers=headers, data=json.dumps(data))
+response = requests.post(url, headers=headers, data=json.dumps(data), timeout=60)
 
 # Print the response
 print(response.json())
