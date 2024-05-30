@@ -1,9 +1,9 @@
-import random
 
 from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import List, Optional, Union
 from .chemical_prop_api import ChemicalPropAPI
+import secrets
 
 router = APIRouter()
 
@@ -82,7 +82,7 @@ def get_id(name: str):
             }
 
     ans = []
-    random.shuffle(cids)
+    secrets.SystemRandom().shuffle(cids)
     for cid in cids[:5]:
         nms = get_name(cid)
         ans.append(nms)
