@@ -1,7 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-from typing import Tuple
-from enum import Enum
+from security import safe_requests
 
 SEARCH_RESULT_LIST_CHUNK_SIZE = 3
 RESULT_TARGET_PAGE_PER_TEXT_COUNT = 500
@@ -21,7 +18,7 @@ class ImageSearchAPI:
         
         for _ in range(max_retry):
             try:
-                result = requests.get(self._endpoint, headers=self._headers, params={'q': key_words, 'mkt': self._mkt,'safeSearch' : 'moderate'},
+                result = safe_requests.get(self._endpoint, headers=self._headers, params={'q': key_words, 'mkt': self._mkt,'safeSearch' : 'moderate'},
                                       timeout=10)
             except Exception:
                 continue
