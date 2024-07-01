@@ -4,6 +4,7 @@ import os
 from friday.core.schema import EnvState
 from friday.environment.env import Env
 from tempfile import NamedTemporaryFile
+from security import safe_command
 
 
 class PythonEnv(Env):
@@ -31,8 +32,7 @@ class PythonEnv(Env):
             args = args.split()  # Convert space-separated string to a list
         self.env_state = EnvState(command=_command)
         try:
-            results = subprocess.run(
-                [
+            results = safe_command.run(subprocess.run, [
                     subprocess.run(["which", "python"], stdout=subprocess.PIPE).stdout.decode().strip(),
                     '-B',
                     str(filename)
