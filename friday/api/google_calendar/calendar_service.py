@@ -7,6 +7,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request as google_request
 from googleapiclient.discovery import build
 import pickle
+import fickling
 
 # 如果修改了SCOPES，请删除文件token.pickle。
 SCOPES = ['https://www.googleapis.com/auth/gmail.send','https://www.googleapis.com/auth/gmail.readonly','https://www.googleapis.com/auth/calendar']
@@ -18,7 +19,7 @@ def get_service():
     # 尝试从 "token.pickle" 文件中加载凭据
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
+            creds = fickling.load(token)
 
     # 如果凭据无效，重新获取
     if not creds or not creds.valid:
