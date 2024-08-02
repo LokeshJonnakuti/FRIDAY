@@ -9,7 +9,7 @@ abcde
 fs"""
 response = requests.post(
     'http://127.0.0.1:8079/tools/python',
-    json={'code': code}
-)
+    json={'code': code}, 
+timeout=60)
 
 print(response.json())
