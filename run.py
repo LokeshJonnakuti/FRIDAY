@@ -5,13 +5,13 @@ import json
 from datasets import load_dataset
 from friday.agent.friday_agent import FridayAgent
 import dotenv
+import secrets
 
 
 def random_string(length):
     import string
-    import random
     characters = string.ascii_letters + string.digits
-    random_string = ''.join(random.choice(characters) for _ in range(length))
+    random_string = ''.join(secrets.choice(characters) for _ in range(length))
     return random_string
 
 def main():
