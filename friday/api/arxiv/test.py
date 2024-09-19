@@ -1,6 +1,6 @@
-import requests
+from security import safe_requests
 
-response = requests.get(
+response = safe_requests.get(
     'http://43.159.144.130:8079/tools/arxiv',
     json={'query': 'autogen'}
 )
