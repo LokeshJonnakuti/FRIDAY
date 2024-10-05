@@ -1,5 +1,6 @@
 from __future__ import annotations
 import sys
+from security import safe_command
 
 sys.dont_write_bytecode = True
 from typing import Union, Optional
@@ -28,8 +29,7 @@ class Bash:
         self.stdin = stdin
 
     def __call__(self, *arg) -> str:
-        result = run(
-            [self.cmd, *arg],
+        result = safe_command.run(run, [self.cmd, *arg],
             input=self.stdin,
             capture_output=True,
             text=True

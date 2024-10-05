@@ -3,6 +3,7 @@ import os
 
 from friday.core.schema import EnvState
 from friday.environment.env import Env
+from security import safe_command
 
 
 class BashEnv(Env):
@@ -23,7 +24,7 @@ class BashEnv(Env):
         self.env_state = EnvState(command=_command)
         _command = _command() + ' && pwd'
         try:
-            results = subprocess.run([_command], capture_output=True, check=True, cwd=self.working_dir,
+            results = safe_command.run(subprocess.run, [_command], capture_output=True, check=True, cwd=self.working_dir,
                                      text=True, shell=True, timeout=self.timeout)
             if results.stdout:
                 stout = results.stdout.strip().split('\n')
