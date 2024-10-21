@@ -5,7 +5,7 @@ from google.auth.transport.requests import Request as google_request
 from googleapiclient.discovery import build
 import base64
 from email.mime.text import MIMEText
-import pickle
+import fickling
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send', 'https://www.googleapis.com/auth/gmail.readonly',
           'https://www.googleapis.com/auth/calendar']
@@ -16,7 +16,7 @@ def get_service():
     # 尝试从 "token.pickle" 文件中加载凭据
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
+            creds = fickling.load(token)
     if creds and not creds.valid:
         if creds.expired and creds.refresh_token:
             creds.refresh(google_request())
