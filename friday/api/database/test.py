@@ -18,7 +18,7 @@ ORDER BY departure_time;'''
 # }
 
 # 发送POST请求
-response = requests.post(url, json=queries)
+response = requests.post(url, json=queries, timeout=60)
 
 # 打印返回的结果
 print(json.dumps(response.json(), indent=4))
@@ -28,8 +28,8 @@ def query_database(query):
     try:
         response = requests.post(
             "http://localhost:8079/tools/database",
-            json={'queries': query}
-        ).json()
+            json={'queries': query}, 
+        timeout=60).json()
         return json.dumps(response, indent=4)
     except Exception as e:
         print(f'run error{e}')

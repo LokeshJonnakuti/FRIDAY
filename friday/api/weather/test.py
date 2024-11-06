@@ -8,7 +8,7 @@ def test_query_weather():
     city = "Beijing"
 
     # 发送GET请求到/weather/query端点
-    response = requests.get(f"{base_url}/weather/query", params={"date": date, "city": city})
+    response = requests.get(f"{base_url}/weather/query", params={"date": date, "city": city}, timeout=60)
 
     # 检查响应是否成功
     if response.status_code == 200:

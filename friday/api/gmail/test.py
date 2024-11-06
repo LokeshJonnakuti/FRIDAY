@@ -17,7 +17,7 @@ def test_send_email():
         "content": "This is a test email."
     }
 
-    response = requests.post(f"{BASE_URL}/gmail/send", json=data)
+    response = requests.post(f"{BASE_URL}/gmail/send", json=data, timeout=60)
     if response.status_code == 200:
         print(f"Success: {response.json()}")
     else:
@@ -27,7 +27,7 @@ def test_send_email():
 def test_list_recent_emails():
     print("Testing: List Recent Emails API")
 
-    response = requests.get(f"{BASE_URL}/gmail/list")
+    response = requests.get(f"{BASE_URL}/gmail/list", timeout=60)
     if response.status_code == 200:
         print(f"Success: {response.json()}")
     else:
